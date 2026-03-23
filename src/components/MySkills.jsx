@@ -1,5 +1,5 @@
 
-import './myskills.css'
+import './mySkills.css'
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaBootstrap } from "react-icons/fa";
 import { SiMongodb, SiJavascript, SiExpress, SiNextdotjs } from "react-icons/si";
 
