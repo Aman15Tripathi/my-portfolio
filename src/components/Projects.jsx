@@ -6,8 +6,8 @@ import './Projects.css';
 const projectList = [
   {
     title: 'Portfolio Website',
-    description: 'A sleek personal portfolio built with React and styled with Bootstrap.',
-    link: 'https://your-portfolio-link.com',
+    description: 'A sleek personal portfolio built with React,node and styled with Bootstrap.',
+    link: 'https://aman-tripathi15.vercel.app',
   },
   {
     title: 'E-commerce Store',

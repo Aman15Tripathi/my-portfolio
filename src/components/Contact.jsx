@@ -3,11 +3,47 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Contact.css';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { useContext } from 'react';
+
+
 
 const Contact = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name: e.target[0].value,
+      email: e.target[1].value,
+      message: e.target[2].value,
+    };
+
+  try {
+    const res = await fetch("https://portfolio-backend-r7zk.onrender.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Message sent ✅");
+
+      e.target.reset(); // ✅ YE ADD KARNA HAI
+    } else {
+      alert("Failed ❌");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  };
 
   return (
     <section className="contact-section" id="contact">
@@ -17,7 +53,7 @@ const Contact = () => {
           Whether you have a question, want to collaborate, or just want to say hi — I’ll try my best to get back to you!
         </p>
 
-        <form className="contact-form" data-aos="fade-up" data-aos-delay="400">
+        <form onSubmit={handleSubmit} className="contact-form" data-aos="fade-up" data-aos-delay="400">
           <input type="text" placeholder="Your Name" required />
           <input type="email" placeholder="Your Email" required />
           <textarea placeholder="Your Message" rows="5" required></textarea>

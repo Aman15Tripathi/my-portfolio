@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import './Home.css';
+import './hero.css';
 import profileImg from '../assets/profile.jpeg'; // Update as needed
 
-const Home = () => {
+const Hero = () => {
   useEffect(() => {
     AOS.init({ duration: 1200 });
   }, []);
@@ -36,6 +36,7 @@ const Home = () => {
             I build modern, responsive, and high-performance web applications using the latest technologies.
           </p>
           <a href="#projects" className="cta-btn">View Projects</a>
+          <a href="#skill" className="cta-btn">My Tech Skills</a>
         </div>
         <div className="image-content" data-aos="fade-left">
           <img src={profileImg} alt="Aman Tripathi" />
@@ -45,4 +46,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hero;
