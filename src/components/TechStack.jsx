@@ -3,7 +3,6 @@ import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
-import './techstack.css';
 import {
   BallCollider,
   Physics,
@@ -11,7 +10,7 @@ import {
   CylinderCollider,
 } from "@react-three/rapier";
 
-// ✅ textures load
+
 const textureLoader = new THREE.TextureLoader();
 
 const imageUrls = [
@@ -27,15 +26,12 @@ const imageUrls = [
 
 const textures = imageUrls.map((url) => textureLoader.load(url));
 
-// ✅ geometry
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-// ✅ random spheres
 const spheres = [...Array(25)].map(() => ({
   scale: [0.4, 0.5, 0.6][Math.floor(Math.random() * 3)],
 }));
 
-// 🔵 Sphere Component
 function SphereGeo({
   vec = new THREE.Vector3(),
   scale,
@@ -63,7 +59,6 @@ function SphereGeo({
       );
 
     api.current.applyImpulse(impulse, true);
-
     api.current.setAngvel({ x: 0.5, y: 0.3, z: 0.2 }, true);
   });
 
@@ -95,7 +90,6 @@ function SphereGeo({
   );
 }
 
-// 🟢 Pointer (mouse interaction)
 function Pointer({ vec = new THREE.Vector3(), isActive }) {
   const ref = useRef();
 
@@ -121,17 +115,15 @@ function Pointer({ vec = new THREE.Vector3(), isActive }) {
   );
 }
 
-// 🚀 MAIN COMPONENT
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
-  // ✅ scroll trigger safe version
   useEffect(() => {
     const handleScroll = () => {
       const workSection = document.getElementById("work");
 
       if (!workSection) {
-        setIsActive(true); // fallback
+        setIsActive(true);
         return;
       }
 
@@ -145,7 +137,6 @@ const TechStack = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ materials
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
@@ -154,10 +145,8 @@ const TechStack = () => {
           emissive: "#ffffff",
           emissiveMap: texture,
           emissiveIntensity: 0.5,
-
           metalness: 1,
           roughness: 0.1,
-
           clearcoat: 1,
           clearcoatRoughness: 0.1,
         })
@@ -165,20 +154,21 @@ const TechStack = () => {
   }, []);
 
   return (
-    <div className="techstack">
-      <h2 className="tech-title">
-        <span className="gradient-text">
+    <div className="w-full h-screen relative overflow-hidden bg-[radial-gradient(circle_at_center,#020617,#000000)]">
+
+      {/* TITLE */}
+      <h2 className="absolute top-[12%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-3xl md:text-4xl font-bold">
+        <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
           My Tech Stack
         </span>
       </h2>
 
+      {/* CANVAS */}
       <Canvas
         shadows
         camera={{ position: [0, 0, 20], fov: 35 }}
         gl={{ alpha: true }}
-        className="tech-canva"
-        style={{ width: "100%", height: "100vh" }}
-
+        className="w-full h-full"
       >
         <ambientLight intensity={0.5} />
 
@@ -206,8 +196,11 @@ const TechStack = () => {
           ))}
         </Physics>
 
-        <Environment files="/models/char_enviorment.hdr" background={false}
-          blur={0.8} />
+        <Environment
+          files="/models/char_enviorment.hdr"
+          background={false}
+          blur={0.8}
+        />
 
         <EffectComposer>
           <N8AO intensity={1.5} aoRadius={2} />

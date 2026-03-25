@@ -9,36 +9,18 @@ import TechStack from '../components/TechStack';
 import Hero from '../components/Hero';
 import MySkills from '../components/MySkills';
 
-
 const Home = () => {
     return (
-        <div className='wrapper'>
-            <div className="container">
-                <Header />
-                <section id="home">
-                    <Hero />
-                </section>
-                <section id="about">
-                    <About />
-                </section>
-                <section id="projects">
-                    <Projects />
-                </section>
-                <section id="resume">
-                    <Resume />
-                </section>
-                <section id="work">
-                    <TechStack />
-                </section>
-                <section id="skill">
-                    <MySkills />
-                </section>
-                <section id="contact">
-                    <Contact />
-                </section>
-                <Footer/>
-
-            </div>
+        <div className="bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
+            <Header />
+            <Hero />
+            <About />
+            <Projects />
+            <Resume />
+            <TechStack />
+            <MySkills />
+            <Contact />
+            <Footer />
         </div>
     )
 }

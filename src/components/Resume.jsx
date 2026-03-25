@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import './Resume.css';
 
 const Resume = () => {
   useEffect(() => {
@@ -9,38 +8,67 @@ const Resume = () => {
   }, []);
 
   return (
-    <section className="resume-section" id="resume">
-      <div className="resume-container">
-        <h2 className="section-title" data-aos="fade-up">Resume</h2>
+    <section
+      id="resume"
+      className="min-h-screen flex items-center bg-gradient-to-r from-[#1f1c2c] to-[#928dab] text-white px-5 py-20"
+    >
+      <div className="max-w-[900px] mx-auto w-full text-center">
 
-        <div className="resume-download" data-aos="fade-up" data-aos-delay="200">
-          <a href="/Aman_Tripathi_Resume.pdf" target="_blank" rel="noopener noreferrer" download>
+        {/* TITLE */}
+        <h2
+          className="text-3xl md:text-4xl text-[#00d4ff] mb-8 drop-shadow-[0_0_10px_#00d4ff]"
+          data-aos="fade-up"
+        >
+          Resume
+        </h2>
+
+        {/* DOWNLOAD BUTTON */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <a
+            href="/Aman_Tripathi_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+            className="inline-block px-6 py-3 bg-[#00d4ff] text-black font-bold rounded-lg shadow-[0_0_15px_#00d4ff] hover:bg-white hover:shadow-[0_0_25px_#00d4ff] transition duration-300 mb-8"
+          >
             📄 Download Resume
           </a>
         </div>
 
-        <div className="resume-content">
+        {/* CONTENT */}
+        <div className="text-left mt-6 space-y-8">
 
-          <div className="education" data-aos="fade-up" data-aos-delay="300">
-            <h3>🎓 Education</h3>
-            <p><strong>Bachelor of Technology (B.Tech)</strong> - Computer Science & Engineering</p>
-            <p>AKTU University, Expected(2026)</p>
+          {/* EDUCATION */}
+          <div data-aos="fade-up" data-aos-delay="300">
+            <h3 className="text-[#00d4ff] text-xl mb-2">🎓 Education</h3>
+            <p className="text-gray-300">
+              <strong>Bachelor of Technology (B.Tech)</strong> - Computer Science & Engineering
+            </p>
+            <p className="text-gray-300">
+              AKTU University, Expected (2026)
+            </p>
           </div>
 
-          <div className="skills" data-aos="fade-up" data-aos-delay="400">
-            <h3>🛠️ Skills</h3>
-            <ul>
+          {/* SKILLS */}
+          <div data-aos="fade-up" data-aos-delay="400">
+            <h3 className="text-[#00d4ff] text-xl mb-2">🛠️ Skills</h3>
+            <ul className="list-disc pl-5 text-gray-300 space-y-1">
               <li><strong>Frontend:</strong> React, HTML, CSS, JavaScript, Bootstrap</li>
               <li><strong>Backend:</strong> Node.js, Express.js, MongoDB, MySQL</li>
               <li><strong>Tools:</strong> Git, GitHub, Postman, VS Code</li>
             </ul>
           </div>
 
-          <div className="experience" data-aos="fade-up" data-aos-delay="500">
-            <h3>💼 Experience</h3>
-            <p><strong>Internship - MERN Stack Developer</strong></p>
-            <p>Staqo, April 2024 - July 2024</p>
-            <ul>
+          {/* EXPERIENCE */}
+          <div data-aos="fade-up" data-aos-delay="500">
+            <h3 className="text-[#00d4ff] text-xl mb-2">💼 Experience</h3>
+            <p className="text-gray-300">
+              <strong>Internship - MERN Stack Developer</strong>
+            </p>
+            <p className="text-gray-300">
+              Staqo, April 2024 - July 2024
+            </p>
+            <ul className="list-disc pl-5 text-gray-300 space-y-1 mt-2">
               <li>Worked on full-stack features for internal dashboard systems</li>
               <li>Built reusable components with React</li>
               <li>Integrated APIs and handled backend routes with Express</li>
