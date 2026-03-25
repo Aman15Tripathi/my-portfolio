@@ -3,52 +3,46 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Contact.css';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { useContext } from 'react';
-
-
+import emailjs from "@emailjs/browser"; // ✅ ADD THIS
 
 const Contact = () => {
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    const formElement = e.target;
 
     const formData = {
-      name: e.target[0].value,
-      email: e.target[1].value,
-      message: e.target[2].value,
+      name: formElement[0].value,
+      email: formElement[1].value,
+      message: formElement[2].value,
     };
 
-  try {
-    const res = await fetch("https://portfolio-backend-r7zk.onrender.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
+    // ✅ EMAILJS SEND
+    emailjs.send(
+      "service_qhl816b",      //  Service ID
+      "template_js2yfyg",     //  Template ID
+      formData,
+      "3rJF2SDC1rsuZ5pRE"    //  Public Key
+    )
+    .then(() => {
       alert("Message sent ✅");
-
-      e.target.reset(); // ✅ YE ADD KARNA HAI
-    } else {
-      alert("Failed ❌");
-    }
-  } catch (error) {
-    console.log(error);
-  }
+      formElement.reset();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Failed to send ❌");
+    });
   };
 
   return (
     <section className="contact-section" id="contact">
       <div className="contact-container">
         <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
+
         <p className="contact-text" data-aos="fade-up" data-aos-delay="200">
           Whether you have a question, want to collaborate, or just want to say hi — I’ll try my best to get back to you!
         </p>
